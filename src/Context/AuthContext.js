@@ -16,7 +16,7 @@ export function useAuth() {
 }
 export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
-  const [currntUser, setCurrentUser] = useState();
+  const [currentUser, setCurrentUser] = useState();
   useEffect(() => {
     const auth = getAuth();
     const unSubcribe = onAuthStateChanged(auth, (user) => {
@@ -46,7 +46,7 @@ export function AuthProvider({ children }) {
     return signOut(auth);
   }
   const value = {
-    currntUser,
+    currentUser,
     signup,
     LogOut,
     Login,

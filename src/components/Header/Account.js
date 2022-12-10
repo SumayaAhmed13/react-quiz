@@ -1,16 +1,31 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../Context/AuthContext";
 import classes from "../Header/Account.module.css";
 const Account = () => {
+  const { currentUser, LogOut } = useAuth();
   return (
     <div className={classes.account}>
-      <span className="material-icons-outlined" title="Account">
-        account_circle
-      </span>
-      <Link to="/signup">Signup</Link>
-      <Link to="/login">Login</Link>
-
-      {/* <span class="material-icons-outlined" title="Logout"> logout </span>  */}
+      {currentUser ? (
+        <>
+          <span className="material-icons-outlined" title="Account">
+            account_circle
+          </span>
+          <span>{currentUser.displayName}</span>
+          <span
+            className="material-icons-outlined"
+            title="Logout"
+            onClick={LogOut}
+          >
+            logout
+          </span>
+        </>
+      ) : (
+        <>
+          <Link to="/signup">Signup</Link>
+          <Link to="/login">Login</Link>
+        </>
+      )}
     </div>
   );
 };
